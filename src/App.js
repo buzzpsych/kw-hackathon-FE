@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Products from "./views/products";
 import productReview from "./views/productReview";
+import CreateProduct from "./views/AddProduct";
 import Home from "./views/Home";
 import "./App.css";
 
@@ -10,6 +11,7 @@ const App = () => {
     <Router>
       <div>
         <Route exact path="/" component={Home} />
+        <Route exact path="/products/add" component={CreateProduct} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/detail" component={productReview} />
       </div>
