@@ -10,7 +10,7 @@ const listProducts = data => {
   const listProducts = data.products.map((product, index) => {
     return (
       <Grid.Column width={3} key={index} style={{ marginBottom: "1em" }}>
-        <ProductCard name={product.name} reviews={2} />
+        <ProductCard name={product.name} reviews={product.average} />
       </Grid.Column>
     );
   });
