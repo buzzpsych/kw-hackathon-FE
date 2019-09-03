@@ -1,12 +1,15 @@
 .product_review {
-  margin: 3em 1em;
+  margin: 2em 1em;
   padding: 1em;
   .title {
     text-align: center;
   }
+  .user {
+    font-weight: bold;
+  }
   .box {
     border: 1px solid #ccc;
-    margin-top: 2em;
+    margin-top: 1em;
     &__description {
       padding: 1em;
       margin-left: 1em;
