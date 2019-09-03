@@ -14,10 +14,10 @@ const listUnfilledStars = reviews => {
   });
 };
 const ProductCard = props => {
-  const { name, reviews } = props;
+  const { name, reviews, index } = props;
 
   return (
-    <Card>
+    <Card key={index}>
       <Card.Content>
         <Card.Header>{name}</Card.Header>
       </Card.Content>

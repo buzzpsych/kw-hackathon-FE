@@ -1,22 +1,30 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { isEmpty, toInteger } from "lodash";
 import ProductCard from "./components/ProductCard";
+import { useQuery } from "@apollo/react-hooks";
+import { getProducts } from "../../graphql/queries/products";
 import { Container, Header, Grid, Button, Icon } from "semantic-ui-react";
 
-const productsExample = [
-  { name: "Product 1", reviews: 3 },
-  { name: "Product 2", reviews: 4 }
-];
-const Products = props => {
-  const { history } = props;
-  const listProducts = productsExample.map(product => {
+const listProducts = data => {
+  const listProducts = data.products.map((product, index) => {
     return (
-      <Grid.Column width={3}>
-        <ProductCard name={product.name} reviews={product.reviews} />
+      <Grid.Column width={3} key={index} style={{ marginBottom: "1em" }}>
+        <ProductCard name={product.name} reviews={2} />
       </Grid.Column>
     );
   });
 
+  return listProducts;
+};
+
+const Products = props => {
+  const { loading, error, data } = useQuery(getProducts);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  const { history } = props;
+  console.log(data);
   return (
     <Container>
       <Grid>
@@ -35,7 +43,7 @@ const Products = props => {
         </Grid.Row>
       </Grid>
       <Grid>
-        <Grid.Row>{listProducts}</Grid.Row>
+        <Grid.Row>{listProducts(data)}</Grid.Row>
       </Grid>
     </Container>
   );
