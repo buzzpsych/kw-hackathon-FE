@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Container, Grid, Input, Label } from "semantic-ui-react";
 
 const Form = props => {
+  console.log(props);
   return (
     <Grid columns={16} className="box">
       <Grid.Row>
@@ -11,7 +12,9 @@ const Form = props => {
             <span>{props.product.description}</span>
           </Container>
           <Container>
-            <Label className="label__strong">Review: 3/5</Label>
+            <Label className="label__strong">
+              Review: {props.product.reviews} / 5
+            </Label>
           </Container>
         </Grid.Column>
         <Grid.Column width={12}>
