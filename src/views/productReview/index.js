@@ -4,20 +4,22 @@ import Form from "./components/Form";
 import { getUsername } from "../../utils";
 import "./styles.scss";
 const productReview = props => {
+  const { name, description, reviews } = props.location.state;
+
   const product = {
-    id: 23,
-    name: "Fake Product",
-    description: "Fake Description"
+    name: name,
+    description: description,
+    reviews: reviews
   };
   return (
     <Container className="product_review">
       <Grid.Column width={12}>
         <Header as="h2" className="title">
-          Product:{product.id} - {product.name}
+          Product: {name}
         </Header>
         <div className="user">Hello, {getUsername()}</div>
       </Grid.Column>
-      <Form product={product} />
+      <Form product={product} {...props} />
     </Container>
   );
 };

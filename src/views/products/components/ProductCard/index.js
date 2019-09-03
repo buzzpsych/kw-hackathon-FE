@@ -8,16 +8,15 @@ const listFilledStars = reviews => {
 };
 
 const listUnfilledStars = reviews => {
-  console.log(5 - reviews);
   return Array.from(Array(5 - reviews).keys()).map(review => {
     return <Icon name="star outline" />;
   });
 };
 const ProductCard = props => {
-  const { name, reviews, index } = props;
+  const { name, reviews, index, showDetails, description } = props;
 
   return (
-    <Card key={index}>
+    <Card key={index} onClick={() => showDetails(name, reviews, description)}>
       <Card.Content>
         <Card.Header>{name}</Card.Header>
       </Card.Content>

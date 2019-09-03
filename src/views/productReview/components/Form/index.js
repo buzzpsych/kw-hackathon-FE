@@ -11,7 +11,9 @@ const Form = props => {
             <span>{props.product.description}</span>
           </Container>
           <Container>
-            <Label className="label__strong">Review: 3/5</Label>
+            <Label className="label__strong">
+              Review: {props.product.reviews} / 5
+            </Label>
           </Container>
         </Grid.Column>
         <Grid.Column width={12}>
