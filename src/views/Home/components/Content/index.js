@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Button } from "semantic-ui-react";
+import { Grid, Button, Input } from "semantic-ui-react";
+import { isEmpty } from "lodash";
 
 const HomeContent = props => {
   const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
 
   const onChange = e => {
     setUsername(e.target.value);
@@ -12,6 +14,14 @@ const HomeContent = props => {
     props.history.push("/products");
   };
 
+  const validateInput = () => {
+    if (!isEmpty(username)) {
+      savingUsername();
+    } else {
+      setError("Username required");
+    }
+  };
+
   return (
     <Grid.Row className="content">
       <div className="card">
@@ -19,18 +29,18 @@ const HomeContent = props => {
           <form class="ui form">
             <div class="field">
               <label>Enter username:</label>
-              <input
+              <Input
                 onChange={e => onChange(e)}
-                type="text"
-                name="username"
                 placeholder="username"
                 value={username}
               />
+              {!isEmpty(error) && <label className="error">{error}</label>}
             </div>
+
             <Button
               class="ui button"
               primary
-              onClick={() => savingUsername()}
+              onClick={() => validateInput()}
               type="button"
             >
               Submit

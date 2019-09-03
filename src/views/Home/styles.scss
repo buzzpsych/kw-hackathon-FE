@@ -13,7 +13,16 @@
   .card {
     padding: 4em;
     border: 1px solid #bcbdbd;
+    border-radius: 2%;
     width: 50%;
+
+    .button {
+      float: right;
+    }
+    .error {
+      color: darkred !important;
+      padding-left: 0.25em;
+    }
   }
 
   .footer {
