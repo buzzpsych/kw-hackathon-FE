@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Container, Grid, Input, Label } from "semantic-ui-react";
 
 const Form = props => {
-  console.log(props);
   return (
     <Grid columns={16} className="box">
       <Grid.Row>
