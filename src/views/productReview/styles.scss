@@ -1,0 +1,41 @@
+.product_review {
+  margin: 3em 1em;
+  padding: 1em;
+  .title {
+    text-align: center;
+  }
+  .box {
+    border: 1px solid #ccc;
+    margin-top: 2em;
+    &__description {
+      padding: 1em;
+      margin-left: 1em;
+      .input {
+        margin: 0.3em;
+        width: 270px;
+      }
+    }
+    .label {
+      background-color: transparent;
+      font-size: 1.1em;
+      font-weight: normal;
+      &__strong {
+        color: #000;
+      }
+    }
+    &__review {
+      .label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #857c7c;
+      }
+      .input {
+        margin: 0.3em;
+        width: 65px;
+      }
+      .button {
+        margin-left: 0.6em;
+      }
+    }
+  }
+}
