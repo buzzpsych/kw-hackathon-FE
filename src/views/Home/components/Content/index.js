@@ -11,7 +11,7 @@ const HomeContent = props => {
   };
   const savingUsername = () => {
     localStorage.setItem("username", username);
-    props.history.push("/products/detail");
+    props.history.push("/products");
   };
 
   const validateInput = () => {
