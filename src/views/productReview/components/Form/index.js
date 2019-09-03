@@ -1,13 +1,14 @@
 import React from "react";
 import { Button, Container, Grid, Input, Label } from "semantic-ui-react";
-const Form = () => {
+
+const Form = props => {
   return (
     <Grid columns={16} className="box">
       <Grid.Row>
         <Grid.Column width={10} className="box__description">
           <Container>
             <Label>Description:</Label>
-            <Input placeholder="Enter your description" />
+            <span>{props.product.description}</span>
           </Container>
           <Container>
             <Label className="label__strong">Review: 3/5</Label>
