@@ -4,11 +4,11 @@ import HomeHeader from "./components/Header";
 import HomeContent from "./components/Content";
 import HomeFooter from "./components/Footer";
 
-const Home = () => {
+const Home = props => {
   return (
     <Container>
       <HomeHeader />
-      <HomeContent />
+      <HomeContent {...props} />
       <HomeFooter />
     </Container>
   );

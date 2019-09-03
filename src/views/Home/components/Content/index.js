@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Button } from "semantic-ui-react";
 
-const HomeContent = () => {
+const HomeContent = props => {
+  const [username, setUsername] = useState("");
+
+  const onChange = e => {
+    setUsername(e.target.value);
+  };
+  const savingUsername = () => {
+    localStorage.setItem("username", username);
+    props.history.push("/products");
+  };
+
   return (
     <Grid.Row style={{ display: "flex", justifyContent: "center" }}>
       <div
@@ -11,9 +21,20 @@ const HomeContent = () => {
           <form class="ui form">
             <div class="field">
               <label>Enter username:</label>
-              <input type="text" name="username" placeholder="username" />
+              <input
+                onChange={e => onChange(e)}
+                type="text"
+                name="username"
+                placeholder="username"
+                value={username}
+              />
             </div>
-            <Button class="ui button" primary type="submit">
+            <Button
+              class="ui button"
+              primary
+              onClick={() => savingUsername()}
+              type="button"
+            >
               Submit
             </Button>
           </form>
