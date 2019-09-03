@@ -8,7 +8,6 @@ const listFilledStars = reviews => {
 };
 
 const listUnfilledStars = reviews => {
-  console.log(5 - reviews);
   return Array.from(Array(5 - reviews).keys()).map(review => {
     return <Icon name="star outline" />;
   });

@@ -3,7 +3,14 @@ import { withRouter } from "react-router-dom";
 import ProductCard from "./components/ProductCard";
 import { useQuery } from "@apollo/react-hooks";
 import { getProducts } from "../../graphql/queries/products";
-import { Container, Header, Grid, Button, Icon } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Grid,
+  Button,
+  Icon,
+  Loader
+} from "semantic-ui-react";
 
 const listProducts = (data, showDetails) => {
   const listProducts = data.products.map((product, index) => {
@@ -25,7 +32,10 @@ const listProducts = (data, showDetails) => {
 const Products = props => {
   const { loading, error, data } = useQuery(getProducts);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <Loader active className="workaround" size="large" inline="centered" />
+    );
   if (error) return <p>Error :(</p>;
   const { history } = props;
 
