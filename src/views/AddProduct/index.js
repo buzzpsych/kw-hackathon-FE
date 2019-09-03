@@ -14,7 +14,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { getUsername } from "../../utils";
 import { ADD_PRODUCT } from "../../graphql/addProduct/index";
 
-function CreateProduct() {
+function CreateProduct(props) {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
 
@@ -27,7 +27,7 @@ function CreateProduct() {
   };
 
   const [createProduct, { data }] = useMutation(ADD_PRODUCT);
-
+  const { history } = props;
   return (
     <Container>
       <Grid>
@@ -68,6 +68,10 @@ function CreateProduct() {
                     description: productDescription,
                     username: getUsername()
                   }
+                });
+                history.push("/products/detail", {
+                  description: productDescription,
+                  name: productName
                 });
               }}
               animated="vertical"
