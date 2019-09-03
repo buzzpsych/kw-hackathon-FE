@@ -1,0 +1,32 @@
+.home_page {
+  .header {
+    text-align: center;
+    padding-top: 2em;
+    margin-bottom: 2em !important;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    padding: 4em;
+    border: 1px solid #bcbdbd;
+    border-radius: 2%;
+    width: 50%;
+
+    .button {
+      float: right;
+    }
+    .error {
+      color: darkred !important;
+      padding-left: 0.25em;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 1em;
+  }
+}
