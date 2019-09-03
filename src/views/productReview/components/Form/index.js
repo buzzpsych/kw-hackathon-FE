@@ -16,7 +16,7 @@ const Form = () => {
         <Grid.Column width={12}>
           <Container className="box__review">
             <Label>Enter review:</Label>
-            <Input className="inputText inputText--small" />
+            <Input />
             <Button primary>Submit</Button>
           </Container>
         </Grid.Column>
