@@ -13,10 +13,8 @@ const HomeContent = props => {
   };
 
   return (
-    <Grid.Row style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ padding: "4em", border: " 1px solid #bcbdbd", width: "50%" }}
-      >
+    <Grid.Row className="content">
+      <div className="card">
         <Grid.Column width={12}>
           <form class="ui form">
             <div class="field">

@@ -5,7 +5,7 @@ const HomeFooter = () => {
   return (
     <Grid.Row>
       <Grid.Column width={12}>
-        <Header as="h5" style={{ textAlign: "center", marginTop: "1em" }}>
+        <Header as="h5" className="footer">
           Created by Travelers team
         </Header>
       </Grid.Column>

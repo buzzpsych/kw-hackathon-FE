@@ -1,0 +1,23 @@
+.home_page {
+  text-align: center;
+
+  .header {
+    padding-top: 2em;
+    margin-bottom: 2em !important;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    padding: 4em;
+    border: 1px solid #bcbdbd;
+    width: 50%;
+  }
+
+  .footer {
+    margin-top: 1em;
+  }
+}
