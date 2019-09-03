@@ -24,7 +24,6 @@ const Products = props => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   const { history } = props;
-  console.log(data);
   return (
     <Container>
       <Grid>

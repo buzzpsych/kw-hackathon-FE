@@ -8,6 +8,8 @@ import {
   Icon,
   TextArea
 } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
+
 import { useMutation } from "@apollo/react-hooks";
 import { getUsername } from "../../utils";
 import { ADD_PRODUCT } from "../../graphql/addProduct/index";
@@ -58,15 +60,16 @@ function CreateProduct() {
           <Grid.Column style={{ textAlign: "right" }} width={18}>
             <Button
               primary
-              onClick={e =>
+              onClick={e => {
+                e.preventDefault();
                 createProduct({
                   variables: {
                     name: productName,
                     description: productDescription,
                     username: getUsername()
                   }
-                })(e)
-              }
+                });
+              }}
               animated="vertical"
             >
               <Button.Content hidden>
@@ -81,4 +84,4 @@ function CreateProduct() {
   );
 }
 
-export default CreateProduct;
+export default withRouter(CreateProduct);
