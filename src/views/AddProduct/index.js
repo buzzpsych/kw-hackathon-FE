@@ -8,8 +8,11 @@ import {
   Icon,
   TextArea
 } from "semantic-ui-react";
+import { useMutation } from "@apollo/react-hooks";
+import { getUsername } from "../../utils";
+import { ADD_PRODUCT } from "../../graphql/addProduct/index";
 
-const AddProduct = () => {
+function CreateProduct() {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
 
@@ -21,10 +24,8 @@ const AddProduct = () => {
     setProductDescription(e.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log(productName);
-    console.log(productDescription);
-  };
+  const [createProduct, { data }] = useMutation(ADD_PRODUCT);
+
   return (
     <Container>
       <Grid>
@@ -55,7 +56,19 @@ const AddProduct = () => {
       <Grid>
         <Grid.Row>
           <Grid.Column style={{ textAlign: "right" }} width={18}>
-            <Button primary onClick={e => handleSubmit(e)} animated="vertical">
+            <Button
+              primary
+              onClick={e =>
+                createProduct({
+                  variables: {
+                    name: productName,
+                    description: productDescription,
+                    username: getUsername()
+                  }
+                })(e)
+              }
+              animated="vertical"
+            >
               <Button.Content hidden>
                 <Icon name="add" />
               </Button.Content>
@@ -66,6 +79,6 @@ const AddProduct = () => {
       </Grid>
     </Container>
   );
-};
+}
 
-export default AddProduct;
+export default CreateProduct;
