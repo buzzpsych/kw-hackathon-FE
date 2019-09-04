@@ -12,18 +12,16 @@ const listUnfilledStars = reviews => {
     return <Icon name="star outline" />;
   });
 };
-const ProductCard = props => {
-  const { name, reviews, index, showDetails, description } = props;
-
+const ProductCard = ({ id, name, average, showDetails, description }) => {
   return (
-    <Card onClick={() => showDetails(name, reviews, description)}>
-      <Card.Content key={index}>
+    <Card onClick={() => showDetails(id, name, average, description)}>
+      <Card.Content>
         <Card.Header>{name}</Card.Header>
       </Card.Content>
 
       <Card.Content extra>
-        {listFilledStars(reviews)}
-        {listUnfilledStars(reviews)}
+        {listFilledStars(average)}
+        {listUnfilledStars(average)}
       </Card.Content>
     </Card>
   );

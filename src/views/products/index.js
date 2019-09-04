@@ -17,12 +17,7 @@ const listProducts = (data, showDetails) => {
   const listProducts = data.products.map((product, index) => {
     return (
       <Grid.Column width={3} key={index} className="card-space">
-        <ProductCard
-          name={product.name}
-          reviews={product.average}
-          description={product.description}
-          showDetails={showDetails}
-        />
+        <ProductCard {...product} showDetails={showDetails} />
       </Grid.Column>
     );
   });
@@ -40,11 +35,12 @@ const Products = props => {
   if (error) return <p>Error :(</p>;
   const { history } = props;
 
-  const showDetails = (name, reviews, description) => {
+  const showDetails = (id, name, reviews, description) => {
     history.push("/products/detail", {
       description: description,
       reviews: reviews,
-      name: name
+      name: name,
+      id: id
     });
   };
 

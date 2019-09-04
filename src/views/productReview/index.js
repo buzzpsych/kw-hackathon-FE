@@ -4,12 +4,12 @@ import Form from "./components/Form";
 import { getUsername } from "../../utils";
 import "./styles.scss";
 const productReview = props => {
-  const { name, description, reviews } = props.location.state;
-
+  const { name, description, reviews, id } = props.location.state;
   const product = {
     name: name,
     description: description,
-    reviews: reviews
+    reviews: reviews,
+    id: id
   };
   return (
     <Container className="product_review">

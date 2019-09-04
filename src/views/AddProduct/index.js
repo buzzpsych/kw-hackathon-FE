@@ -37,10 +37,11 @@ function CreateProduct(props) {
           name: productName,
           description: productDescription,
           username: getUsername()
-        }
+        },
+        refetchQueries: ["products"]
       });
 
-      history.push("/products/detail", {
+      history.push("/products", {
         description: productDescription,
         name: productName
       });
