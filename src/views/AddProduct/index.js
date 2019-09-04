@@ -8,15 +8,19 @@ import {
   Icon,
   TextArea
 } from "semantic-ui-react";
+import { isEmpty } from "lodash";
 import { withRouter } from "react-router-dom";
-
 import { useMutation } from "@apollo/react-hooks";
 import { getUsername } from "../../utils";
 import { ADD_PRODUCT } from "../../graphql/addProduct/index";
+import "./styles.scss";
 
 function CreateProduct(props) {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
+  const [error, setError] = useState("");
+  const [createProduct] = useMutation(ADD_PRODUCT);
+  const { history } = props;
 
   const handleProductName = e => {
     setProductName(e.target.value);
@@ -26,53 +30,63 @@ function CreateProduct(props) {
     setProductDescription(e.target.value);
   };
 
-  const [createProduct, { data }] = useMutation(ADD_PRODUCT);
-  const { history } = props;
+  const validateInput = () => {
+    if (!isEmpty(productName) && !isEmpty(productDescription)) {
+      createProduct({
+        variables: {
+          name: productName,
+          description: productDescription,
+          username: getUsername()
+        },
+        refetchQueries: ["products"]
+      });
+
+      history.push("/products", {
+        description: productDescription,
+        name: productName
+      });
+    } else {
+      setError("The fields are required");
+    }
+  };
+
   return (
-    <Container>
+    <Container className="add-product">
       <Grid>
-        <Grid.Row style={{ marginTop: "20px" }}>
-          <Grid.Column width={18}>
-            <Header style={{ textAlign: "left" }}>Enter the product</Header>
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <Header>Enter the product</Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={18}>
+          <Grid.Column width={6}>
             <Input
               onChange={handleProductName}
               label="Name"
-              placeholder="Product 1"
+              placeholder="Product name"
+              className="add-input"
             />
           </Grid.Column>
         </Grid.Row>
-
         <Grid.Row>
-          <Grid.Column width={18}>
+          <Grid.Column width={8}>
             <TextArea
               onChange={handleProductDescription}
               placeholder="Product Description"
+              className="add-textarea"
             />
           </Grid.Column>
         </Grid.Row>
       </Grid>
+
       <Grid>
         <Grid.Row>
-          <Grid.Column style={{ textAlign: "right" }} width={18}>
+          <Grid.Column className="button-content" width={12}>
             <Button
               primary
               onClick={e => {
                 e.preventDefault();
-                createProduct({
-                  variables: {
-                    name: productName,
-                    description: productDescription,
-                    username: getUsername()
-                  }
-                });
-                history.push("/products/detail", {
-                  description: productDescription,
-                  name: productName
-                });
+                validateInput();
               }}
               animated="vertical"
             >
@@ -83,6 +97,7 @@ function CreateProduct(props) {
             </Button>
           </Grid.Column>
         </Grid.Row>
+        {!isEmpty(error) && <label className="error">{error}</label>}
       </Grid>
     </Container>
   );

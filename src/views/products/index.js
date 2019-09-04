@@ -11,17 +11,13 @@ import {
   Icon,
   Loader
 } from "semantic-ui-react";
+import "./styles.scss";
 
 const listProducts = (data, showDetails) => {
   const listProducts = data.products.map((product, index) => {
     return (
-      <Grid.Column width={3} key={index} style={{ marginBottom: "1em" }}>
-        <ProductCard
-          name={product.name}
-          reviews={product.average}
-          description={product.description}
-          showDetails={showDetails}
-        />
+      <Grid.Column width={3} key={index} className="card-space">
+        <ProductCard {...product} showDetails={showDetails} />
       </Grid.Column>
     );
   });
@@ -39,23 +35,28 @@ const Products = props => {
   if (error) return <p>Error :(</p>;
   const { history } = props;
 
-  const showDetails = (name, reviews, description) => {
+  const showDetails = (id, name, reviews, description) => {
     history.push("/products/detail", {
       description: description,
       reviews: reviews,
-      name: name
+      name: name,
+      id: id
     });
   };
 
   return (
-    <Container>
+    <Container className="products">
       <Grid>
-        <Grid.Row style={{ marginTop: "20px" }}>
+        <Grid.Row>
           <Grid.Column width={13}>
-            <Header style={{ textAlign: "left" }}>Review's Site</Header>
+            <Header>Review's Site</Header>
           </Grid.Column>
           <Grid.Column width={3}>
-            <Button onClick={() => history.push("/products/add")} animated>
+            <Button
+              onClick={() => history.push("/products/add")}
+              primary
+              animated
+            >
               <Button.Content visible>Add Product</Button.Content>
               <Button.Content hidden>
                 <Icon name="add" />
