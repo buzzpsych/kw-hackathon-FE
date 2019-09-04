@@ -16,8 +16,8 @@ const ProductCard = props => {
   const { name, reviews, index, showDetails, description } = props;
 
   return (
-    <Card key={index} onClick={() => showDetails(name, reviews, description)}>
-      <Card.Content>
+    <Card onClick={() => showDetails(name, reviews, description)}>
+      <Card.Content key={index}>
         <Card.Header>{name}</Card.Header>
       </Card.Content>
 

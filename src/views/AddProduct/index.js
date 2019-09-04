@@ -9,10 +9,10 @@ import {
   TextArea
 } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
-
 import { useMutation } from "@apollo/react-hooks";
 import { getUsername } from "../../utils";
 import { ADD_PRODUCT } from "../../graphql/addProduct/index";
+import "./styles.scss";
 
 function CreateProduct(props) {
   const [productName, setProductName] = useState("");
@@ -26,31 +26,32 @@ function CreateProduct(props) {
     setProductDescription(e.target.value);
   };
 
-  const [createProduct, { data }] = useMutation(ADD_PRODUCT);
+  const [createProduct] = useMutation(ADD_PRODUCT);
   const { history } = props;
   return (
-    <Container>
+    <Container className="add-product">
       <Grid>
-        <Grid.Row style={{ marginTop: "20px" }}>
-          <Grid.Column width={18}>
-            <Header style={{ textAlign: "left" }}>Enter the product</Header>
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <Header>Enter the product</Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={18}>
+          <Grid.Column width={6}>
             <Input
               onChange={handleProductName}
               label="Name"
               placeholder="Product 1"
+              className="add-input"
             />
           </Grid.Column>
         </Grid.Row>
-
         <Grid.Row>
-          <Grid.Column width={18}>
+          <Grid.Column width={8}>
             <TextArea
               onChange={handleProductDescription}
               placeholder="Product Description"
+              className="add-textarea"
             />
           </Grid.Column>
         </Grid.Row>
